@@ -24,7 +24,6 @@ export default (props) => {
     if (!props.data.id) {
       dispatch(getPokemon(props.id, props.name))
     }
-    console.log(statePokemon)
   }, [])
 
   const padLeadingZeros = (num, size) => {
@@ -34,7 +33,7 @@ export default (props) => {
   }
 
   return (
-    <PokemonLink to={`/Detail/${props.id}`}>
+    <PokemonLink to={`/Detail/${props.name}`}>
       <PokemonCard className="swing">
         <ImageCanvas className="img-canvas">
           <CirlceBg className="circle-bg" />
@@ -47,7 +46,7 @@ export default (props) => {
           />
         </ImageCanvas>
         <PokemonContent>
-          {props.data.isLoading || props.data == undefined ? (
+          {props.data.isLoading || props.data === undefined ? (
             <>
               <LoadingWrapper>
                 <SyncLoader size={5} color="#2f3542" />
@@ -59,8 +58,8 @@ export default (props) => {
               <PokemonTitle>{props.name}</PokemonTitle>
               {props.data.types && (
                 <PokemonTypeStyled>
-                  {props.data.types.map((node) => (
-                    <span className={`${node.type.name}`}>
+                  {props.data.types.map((node, i) => (
+                    <span key={i} className={`${node.type.name}`}>
                       {node.type.name}
                     </span>
                   ))}

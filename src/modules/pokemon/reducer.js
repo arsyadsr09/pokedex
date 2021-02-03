@@ -5,6 +5,12 @@ import {
   GET_POKEMON_DETAIL,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
+  GET_POKEMON_BEFORE,
+  GET_POKEMON_BEFORE_SUCCESS,
+  GET_POKEMON_BEFORE_FAILED,
+  GET_POKEMON_AFTER,
+  GET_POKEMON_AFTER_SUCCESS,
+  GET_POKEMON_AFTER_FAILED,
 } from "../constants"
 
 const initialState = {
@@ -12,6 +18,8 @@ const initialState = {
   hasError: false,
   errorMessage: "",
   data: [],
+  before: {},
+  after: {},
   pagination: {
     currentPage: 1,
     hasNext: false,
@@ -95,6 +103,59 @@ export default (state = initialState, action) => {
 
           return item
         }),
+      }
+    case GET_POKEMON_BEFORE:
+      return {
+        ...state,
+        before: {
+          ...state.before,
+          isLoading: false,
+        },
+      }
+    case GET_POKEMON_BEFORE_SUCCESS:
+      return {
+        ...state,
+        before: {
+          ...state.before,
+          isLoading: false,
+          data: action.payload.data,
+        },
+      }
+    case GET_POKEMON_BEFORE_FAILED:
+      return {
+        ...state,
+        before: {
+          ...state.before,
+          isLoading: false,
+          hasError: true,
+          errorMessage: action.payload.errorMessage,
+        },
+      }
+    case GET_POKEMON_AFTER:
+      return {
+        ...state,
+        after: {
+          ...state.before,
+          isLoading: false,
+        },
+      }
+    case GET_POKEMON_AFTER_SUCCESS:
+      return {
+        ...state,
+        after: {
+          ...state.before,
+          isLoading: false,
+          data: action.payload.data,
+        },
+      }
+    case GET_POKEMON_AFTER_FAILED:
+      return {
+        ...state,
+        after: {
+          ...state.before,
+          isLoading: false,
+          data: action.payload.data,
+        },
       }
     default:
       return state

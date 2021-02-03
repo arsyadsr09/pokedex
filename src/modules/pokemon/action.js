@@ -7,6 +7,12 @@ import {
   GET_POKEMON_DETAIL,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
+  GET_POKEMON_BEFORE,
+  GET_POKEMON_BEFORE_SUCCESS,
+  GET_POKEMON_BEFORE_FAILED,
+  GET_POKEMON_AFTER,
+  GET_POKEMON_AFTER_SUCCESS,
+  GET_POKEMON_AFTER_FAILED,
 } from "../constants"
 
 export const getPokemonList = (page = 1) => async (dispatch) => {
@@ -25,11 +31,12 @@ export const getPokemonList = (page = 1) => async (dispatch) => {
     })
 
     const { data } = response
+    const count = data.count == 1118 ? 899 : data.count
 
     dispatch({
       type: GET_POKELIST_SUCCESS,
       payload: {
-        total: data.count,
+        total: count,
         hasNext: !!data.next,
         data: data.results,
         page,
@@ -55,7 +62,6 @@ export const getPokemon = (id, name) => async (dispatch) => {
 
   try {
     const response = await axios.get(`${API_URL}/pokemon/${name}`)
-    console.log(response.data)
 
     dispatch({
       type: GET_POKEMON_DETAIL_SUCCESS,
@@ -67,6 +73,36 @@ export const getPokemon = (id, name) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: GET_POKEMON_DETAIL_FAILED,
+      payload: {
+        errorMessage: e,
+      },
+    })
+  }
+}
+
+export const getPokemonById = (id, type) => async (dispatch) => {
+  dispatch({
+    type: type === "before" ? GET_POKEMON_BEFORE : GET_POKEMON_AFTER,
+  })
+
+  try {
+    const response = await axios.get(`${API_URL}/pokemon/${id}`)
+
+    dispatch({
+      type:
+        type === "before"
+          ? GET_POKEMON_BEFORE_SUCCESS
+          : GET_POKEMON_AFTER_SUCCESS,
+      payload: {
+        data: response.data,
+      },
+    })
+  } catch (e) {
+    dispatch({
+      type:
+        type === "before"
+          ? GET_POKEMON_BEFORE_FAILED
+          : GET_POKEMON_BEFORE_FAILED,
       payload: {
         errorMessage: e,
       },

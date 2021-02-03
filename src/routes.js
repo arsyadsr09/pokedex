@@ -9,7 +9,7 @@ export const Routes = () => (
   <BrowserRouter>
     <Layouts>
       <Route path="/" exact component={Home} />
-      <Route path="/detail/:id" exact component={Detail} />
+      <Route path="/detail/:name" exact component={Detail} />
     </Layouts>
   </BrowserRouter>
 )
