@@ -2,6 +2,7 @@ import {
   GET_POKEMON_DETAIL_PAGE,
   GET_POKEMON_DETAIL_PAGE_SUCCESS,
   GET_POKEMON_DETAIL_PAGE_FAILED,
+  GET_POKEMON_AFTER_FAILED,
 } from "../constants"
 
 const initialState = {

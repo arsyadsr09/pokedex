@@ -43,7 +43,7 @@ import {
 
 import { LoadingWrapper } from "../Home/styled"
 import { getPokemonDetailPage } from "../../modules/detail/action"
-import { getPokemonList, getPokemonById } from "../../modules/pokemon/action"
+import { getPokemonList } from "../../modules/pokemon/action"
 
 export default () => {
   const state = useSelector((state) => state)
@@ -53,26 +53,7 @@ export default () => {
   useEffect(() => {
     dispatch(getPokemonList(state.pokemon.pagination.currentPage))
     dispatch(getPokemonDetailPage(name))
-    if (state.detail.isLoading || state.detail.data.name !== undefined) {
-      getBeforeAndAfter()
-    }
-
-    // if()
   }, [])
-
-  const getBeforeAndAfter = () => {
-    const beforeId =
-      state.detail.data.id <= 1
-        ? state.pokemon.pagination.total - 1
-        : state.detail.data.id - 1
-    const afterId =
-      state.detail.data.id + 1 >= state.pokemon.pagination.total
-        ? 1
-        : state.detail.data.id + 1
-
-    dispatch(getPokemonById(beforeId, "before"))
-    dispatch(getPokemonById(afterId, "after"))
-  }
 
   const padLeadingZeros = (num, size) => {
     var s = num + ""
@@ -88,30 +69,54 @@ export default () => {
     <>
       <Navbar />
       <ContainerWrapper>
-        {state.detail.isLoading || state.detail.data.name === undefined ? (
+        {state.detail.isLoading ||
+        state.detail.before.isLoading ||
+        state.detail.after.isLoading ||
+        state.detail.data.name === undefined ? (
           <LoadingWrapper>
             <SyncLoader size={5} color="#ff416c" />
           </LoadingWrapper>
         ) : (
           <>
             <PathWrapper>
-              <PathLeftStyled to={`/Detail/${state.pokemon.before.data.name}`}>
+              <PathLeftStyled
+                className={state.detail.data.id - 1 <= 0 ? "disabled" : ""}
+                to={
+                  state.detail.data.id - 1 <= 1
+                    ? ""
+                    : `/Detail/${
+                        state.pokemon.data[state.detail.data.id - 2].name
+                      }`
+                }
+              >
                 <ChevronLeft icon={faChevronLeft} />
                 <PathContent>
                   <span className="number">
-                    #
-                    {state.detail.data.id <= 1
-                      ? padLeadingZeros(state.pokemon.pagination.total - 1, 3)
-                      : padLeadingZeros(state.detail.data.id - 1, 3)}
+                    {state.detail.data.id - 1 <= 0
+                      ? "-"
+                      : "#" + padLeadingZeros(state.detail.data.id - 1, 3)}
                   </span>
-                  {!state.pokemon.before.isLoading && (
-                    <span className="name">
-                      {state.pokemon.before.data.name}
-                    </span>
-                  )}
+                  <span className="name">
+                    {state.detail.data.id - 1 <= 0
+                      ? "-"
+                      : state.pokemon.data[state.detail.data.id - 2].name}
+                  </span>
                 </PathContent>
               </PathLeftStyled>
-              <PathRightStyled to={`/Detail/${state.pokemon.after.data.name}`}>
+              <PathRightStyled
+                className={
+                  state.detail.data.id + 1 >= state.pokemon.pagination.total
+                    ? "disabled"
+                    : ""
+                }
+                to={
+                  state.detail.data.id + 1 >= state.pokemon.pagination.total
+                    ? ""
+                    : `/Detail/${
+                        state.pokemon.data[state.detail.data.id + 1].name
+                      }`
+                }
+              >
                 <ChevronRight icon={faChevronRight} />
                 <PathContent>
                   <span className="number">
@@ -120,9 +125,9 @@ export default () => {
                       ? padLeadingZeros(1, 3)
                       : padLeadingZeros(state.detail.data.id + 1, 3)}
                   </span>
-                  {!state.pokemon.after.isLoading && (
+                  {!state.detail.after.isLoading && (
                     <span className="name">
-                      {state.pokemon.after.data.name}
+                      {state.pokemon.data[state.detail.data.id + 1].name}
                     </span>
                   )}
                 </PathContent>

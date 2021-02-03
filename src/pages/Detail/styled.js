@@ -18,6 +18,19 @@ export const PathLeftStyled = styled(Link)`
   transition: all 0.5s ease;
   text-decoration: none;
 
+  &.disabled {
+    transition: all 0.5s ease;
+    text-decoration: none;
+    background: #57606f;
+    color: #747d8c;
+    &:hover {
+      transition: all 0.5s ease;
+      text-decoration: none;
+      background: #57606f;
+      color: #747d8c;
+    }
+  }
+
   &:hover {
     text-decoration: none;
     background: #eccc68;
@@ -25,7 +38,7 @@ export const PathLeftStyled = styled(Link)`
   }
 `
 
-export const PathRightStyled = styled.div`
+export const PathRightStyled = styled(Link)`
   position: relative;
   // width: 50%;
   height: 130px;
@@ -35,6 +48,19 @@ export const PathRightStyled = styled.div`
   clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%, 55% 65%, 0 65%);
   transition: all 0.5s ease;
   text-decoration: none;
+
+  &.disabled {
+    transition: all 0.5s ease;
+    text-decoration: none;
+    background: #57606f;
+    color: #747d8c;
+    &:hover {
+      transition: all 0.5s ease;
+      text-decoration: none;
+      background: #57606f;
+      color: #747d8c;
+    }
+  }
 
   &:hover {
     text-decoration: none;
