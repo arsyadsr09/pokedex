@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_URL } from "../configs"
+import { API_URL } from "../../configs"
 import {
   GET_POKELIST,
   GET_POKELIST_FAILED,
@@ -7,7 +7,7 @@ import {
   GET_POKEMON_DETAIL,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
-} from "./constants"
+} from "../constants"
 
 export const getPokemonList = (page = 1) => async (dispatch) => {
   dispatch({

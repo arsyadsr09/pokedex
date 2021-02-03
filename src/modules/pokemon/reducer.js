@@ -5,7 +5,7 @@ import {
   GET_POKEMON_DETAIL,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
-} from "./constants"
+} from "../constants"
 
 const initialState = {
   isLoading: false,
