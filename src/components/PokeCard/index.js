@@ -1,5 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { SyncLoader } from "react-spinners"
 import { getPokemon } from "../../modules/actions"
 
 import {
@@ -11,15 +13,18 @@ import {
   PokemonContent,
   ImageCanvas,
   CirlceBg,
+  LoadingWrapper,
 } from "./styled"
 
 export default (props) => {
-  const pokemonDetail = useSelector((state) => state.data)
+  const statePokemon = useSelector((state) => state)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // dispatch(getPokemon(props.id, props.name))
-    // console.log(pokemonDetail)
+    if (!props.data.id) {
+      dispatch(getPokemon(props.id, props.name))
+    }
+    console.log(statePokemon)
   }, [])
 
   const padLeadingZeros = (num, size) => {
@@ -29,25 +34,42 @@ export default (props) => {
   }
 
   return (
-    <PokemonCard className="swing">
-      <ImageCanvas className="img-canvas">
-        <CirlceBg className="circle-bg" />
-        <PokemonImage
-          className="pokemon-image"
-          img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padLeadingZeros(
-            props.id + 1,
-            3
-          )}.png`}
-        />
-      </ImageCanvas>
-      <PokemonContent>
-        <PokemonNumber>#{padLeadingZeros(props.id + 1, 3)}</PokemonNumber>
-        <PokemonTitle>{props.name}</PokemonTitle>
-        <PokemonTypeStyled>
-          <span className="grass">Grass</span>
-          <span className="poison">Poison</span>
-        </PokemonTypeStyled>
-      </PokemonContent>
-    </PokemonCard>
+    <Link to={`/Detail/${props.id}`}>
+      <PokemonCard className="swing">
+        <ImageCanvas className="img-canvas">
+          <CirlceBg className="circle-bg" />
+          <PokemonImage
+            className="pokemon-image"
+            img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padLeadingZeros(
+              props.id + 1,
+              3
+            )}.png`}
+          />
+        </ImageCanvas>
+        <PokemonContent>
+          {props.data.isLoading || props.data == undefined ? (
+            <>
+              <LoadingWrapper>
+                <SyncLoader size={5} color="#2f3542" />
+              </LoadingWrapper>
+            </>
+          ) : (
+            <>
+              <PokemonNumber>#{padLeadingZeros(props.id + 1, 3)}</PokemonNumber>
+              <PokemonTitle>{props.name}</PokemonTitle>
+              {props.data.types && (
+                <PokemonTypeStyled>
+                  {props.data.types.map((node) => (
+                    <span className={`${node.type.name}`}>
+                      {node.type.name}
+                    </span>
+                  ))}
+                </PokemonTypeStyled>
+              )}
+            </>
+          )}
+        </PokemonContent>
+      </PokemonCard>
+    </Link>
   )
 }

@@ -125,7 +125,7 @@ export const PokemonNumber = styled.span`
 `
 
 export const PokemonTypeStyled = styled.span`
-  // text-transform: uppercase;
+  text-transform: capitalize;
   margin: 0 0.8rem;
   display: flex;
   align-self: flex-start;
@@ -137,7 +137,7 @@ export const PokemonTypeStyled = styled.span`
     padding: 1px 10px;
     color: #fff;
     margin-right: 2px;
-    font-size: 11px;
+    font-size: 11.5px;
   }
 
   .normal {
@@ -171,6 +171,7 @@ export const PokemonTypeStyled = styled.span`
 
   .bug {
     background: #dce35b;
+    color: #333;
   }
 
   .ghost {
@@ -188,6 +189,7 @@ export const PokemonTypeStyled = styled.span`
 
   .water {
     background: #43c6ac;
+    color: #333;
   }
 
   .electric {
@@ -213,4 +215,11 @@ export const PokemonTypeStyled = styled.span`
   .fairy {
     background: #b24592;
   }
+`
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
 `
