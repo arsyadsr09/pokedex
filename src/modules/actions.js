@@ -32,6 +32,7 @@ export const getPokemonList = (page = 1) => async (dispatch) => {
         total: data.count,
         hasNext: !!data.next,
         data: data.results,
+        page
       },
     })
   } catch (e) {
