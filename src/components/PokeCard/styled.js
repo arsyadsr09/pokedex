@@ -1,4 +1,12 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+
+export const PokemonLink = styled(Link)`
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+`
 
 export const PokemonCard = styled.div`
   display: flex;

@@ -1,8 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import { SyncLoader } from "react-spinners"
-import { getPokemon } from "../../modules/actions"
+import { getPokemon } from "../../modules/pokemon/action"
 
 import {
   PokemonCard,
@@ -14,6 +13,7 @@ import {
   ImageCanvas,
   CirlceBg,
   LoadingWrapper,
+  PokemonLink,
 } from "./styled"
 
 export default (props) => {
@@ -34,7 +34,7 @@ export default (props) => {
   }
 
   return (
-    <Link to={`/Detail/${props.id}`}>
+    <PokemonLink to={`/Detail/${props.id}`}>
       <PokemonCard className="swing">
         <ImageCanvas className="img-canvas">
           <CirlceBg className="circle-bg" />
@@ -70,6 +70,6 @@ export default (props) => {
           )}
         </PokemonContent>
       </PokemonCard>
-    </Link>
+    </PokemonLink>
   )
 }
