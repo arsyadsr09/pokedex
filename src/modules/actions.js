@@ -32,7 +32,7 @@ export const getPokemonList = (page = 1) => async (dispatch) => {
         total: data.count,
         hasNext: !!data.next,
         data: data.results,
-        page
+        page,
       },
     })
   } catch (e) {
@@ -55,6 +55,7 @@ export const getPokemon = (id, name) => async (dispatch) => {
 
   try {
     const response = await axios.get(`${API_URL}/pokemon/${name}`)
+    console.log(response.data)
 
     dispatch({
       type: GET_POKEMON_DETAIL_SUCCESS,

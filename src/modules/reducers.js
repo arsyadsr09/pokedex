@@ -60,6 +60,8 @@ export default (state = initialState, action) => {
               isLoading: true,
             }
           }
+
+          return item
         }),
       }
     case GET_POKEMON_DETAIL_SUCCESS:
@@ -73,6 +75,8 @@ export default (state = initialState, action) => {
               isLoading: false,
             }
           }
+
+          return item
         }),
       }
     case GET_POKEMON_DETAIL_FAILED:
@@ -88,6 +92,8 @@ export default (state = initialState, action) => {
               errorMessage: action.payload.errorMessage,
             }
           }
+
+          return item
         }),
       }
     default:
