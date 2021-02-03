@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Logo from "../assets/images/logo.png"
+import { Link } from "react-router-dom"
 
 const NavbarStyled = styled.div`
   padding: 1rem;
@@ -13,6 +14,8 @@ const NavbarStyled = styled.div`
 
 export default () => (
   <NavbarStyled>
-    <img src={Logo} width={250} alt="logo" />
+    <Link to="/">
+      <img src={Logo} width={250} alt="logo" />
+    </Link>
   </NavbarStyled>
 )
