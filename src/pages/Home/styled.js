@@ -12,3 +12,9 @@ export const LoadingWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+export const ContentWrapper = styled.div`
+  width: 80%;
+  min-height: 100vh;
+  background-color: white;
+`

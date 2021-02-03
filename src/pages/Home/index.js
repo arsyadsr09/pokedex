@@ -2,11 +2,14 @@ import React, { useEffect, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPokemonList } from "../../modules/actions"
 import PokeCard from "../../components/PokeCard"
+import Navbar from "../../layouts/Navbar"
 import { HashLoader } from "react-spinners"
 
 import debounce from "lodash.debounce"
 
-import { CardWrap, LoadingWrapper } from "./styled"
+import { CardWrap, LoadingWrapper, ContentWrapper } from "./styled"
+import BgGrey from "../../assets/images/container_bg.png"
+import { BgStyled } from "../../layouts/styles"
 
 export default () => {
   const statePokemon = useSelector((state) => state)
@@ -49,15 +52,18 @@ export default () => {
   }, [])
 
   return (
-    <>
-      <CardWrap>
-        {statePokemon.data.map((item, i) => {
-          return <PokeCard key={i} data={item} name={item.name} id={i} />
-        })}
-      </CardWrap>
-      <LoadingWrapper>
-        <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
-      </LoadingWrapper>
-    </>
+    <BgStyled img={BgGrey}>
+      <ContentWrapper>
+        <Navbar />
+        <CardWrap>
+          {statePokemon.data.map((item, i) => {
+            return <PokeCard key={i} data={item} name={item.name} id={i} />
+          })}
+        </CardWrap>
+        <LoadingWrapper>
+          <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
+        </LoadingWrapper>
+      </ContentWrapper>
+    </BgStyled>
   )
 }
