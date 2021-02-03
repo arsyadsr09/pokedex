@@ -2,7 +2,6 @@ import {
   GET_POKEMON_DETAIL_PAGE,
   GET_POKEMON_DETAIL_PAGE_SUCCESS,
   GET_POKEMON_DETAIL_PAGE_FAILED,
-  GET_POKEMON_AFTER_FAILED,
 } from "../constants"
 
 const initialState = {
@@ -12,6 +11,7 @@ const initialState = {
   data: {},
   specie: {},
   evolution: {},
+  evo_detail: {},
 }
 
 export default (state = initialState, action) => {
@@ -29,6 +29,7 @@ export default (state = initialState, action) => {
         data: action.payload.data,
         specie: action.payload.specie,
         evolution: action.payload.evolution,
+        evoDetail: action.payload.evoDetail,
       }
     case GET_POKEMON_DETAIL_PAGE_FAILED:
       return {
@@ -37,6 +38,33 @@ export default (state = initialState, action) => {
         hasError: true,
         errorMessage: action.payload.errorMessage,
       }
+
+    // case GET_POKEMON_EVOLUTION:
+    //   return {
+    //     ...state,
+    //     evolution: {
+    //       ...state.evolution,
+    //       isLoading: true,
+    //       hasError: false,
+    //     },
+    //   }
+    // case GET_POKEMON_EVOLUTION_SUCCESS:
+    //   return {
+    //     ...state,
+    //     evolution: {
+    //       ...state.evolution,
+    //       evo_detail: [...evo_detail, action.payload.data],
+    //     },
+    //   }
+    // case GET_POKEMON_EVOLUTION_FAILED:
+    //   return {
+    //     ...state,
+    //     evolution: {
+    //       ...state.evolution,
+    //       isLoading: true,
+    //       hasError: false,
+    //     },
+    //   }
     default:
       return state
   }

@@ -1,5 +1,13 @@
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link } from "react-router-dom"
+
+export const EvolutionLink = styled(Link)`
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+`
 
 export const EvolutionCard = styled.div`
   margin-top: 2rem;

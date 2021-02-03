@@ -50,7 +50,7 @@ export const getPokemon = (id, name) => async (dispatch) => {
   dispatch({
     type: GET_POKEMON_DETAIL,
     payload: {
-      id,
+      name,
     },
   })
 
@@ -60,7 +60,7 @@ export const getPokemon = (id, name) => async (dispatch) => {
     dispatch({
       type: GET_POKEMON_DETAIL_SUCCESS,
       payload: {
-        id,
+        name,
         data: response.data,
       },
     })

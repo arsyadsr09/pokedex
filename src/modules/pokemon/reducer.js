@@ -53,8 +53,8 @@ export default (state = initialState, action) => {
     case GET_POKEMON_DETAIL:
       return {
         ...state,
-        data: state.data.map((item, index) => {
-          if (index === action.payload.id) {
+        data: state.data.map((item) => {
+          if (item.name === action.payload.name) {
             return {
               ...item,
               isLoading: true,
@@ -67,8 +67,8 @@ export default (state = initialState, action) => {
     case GET_POKEMON_DETAIL_SUCCESS:
       return {
         ...state,
-        data: state.data.map((item, index) => {
-          if (index === action.payload.id) {
+        data: state.data.map((item) => {
+          if (item.name === action.payload.name) {
             return {
               ...item,
               ...action.payload.data,
@@ -82,8 +82,8 @@ export default (state = initialState, action) => {
     case GET_POKEMON_DETAIL_FAILED:
       return {
         ...state,
-        data: state.data.map((item, index) => {
-          if (index === action.payload.id) {
+        data: state.data.map((item) => {
+          if (item.name === action.payload.name) {
             return {
               ...item,
               ...action.payload.data,

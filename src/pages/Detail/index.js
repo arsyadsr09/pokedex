@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { SyncLoader } from "react-spinners"
@@ -51,9 +51,8 @@ export default () => {
   const { name } = useParams()
 
   useEffect(() => {
-    dispatch(getPokemonList(state.pokemon.pagination.currentPage))
     dispatch(getPokemonDetailPage(name))
-  }, [])
+  }, [name])
 
   const padLeadingZeros = (num, size) => {
     var s = num + ""
@@ -69,10 +68,7 @@ export default () => {
     <>
       <Navbar />
       <ContainerWrapper>
-        {state.detail.isLoading ||
-        state.detail.before.isLoading ||
-        state.detail.after.isLoading ||
-        state.detail.data.name === undefined ? (
+        {state.detail.isLoading || state.detail.data.name === undefined ? (
           <LoadingWrapper>
             <SyncLoader size={5} color="#ff416c" />
           </LoadingWrapper>
@@ -82,11 +78,11 @@ export default () => {
               <PathLeftStyled
                 className={state.detail.data.id - 1 <= 0 ? "disabled" : ""}
                 to={
-                  state.detail.data.id - 1 <= 1
-                    ? ""
-                    : `/Detail/${
+                  state.detail.data.id - 1 > 0
+                    ? `/Detail/${
                         state.pokemon.data[state.detail.data.id - 2].name
                       }`
+                    : ""
                 }
               >
                 <ChevronLeft icon={faChevronLeft} />
@@ -112,9 +108,7 @@ export default () => {
                 to={
                   state.detail.data.id + 1 >= state.pokemon.pagination.total
                     ? ""
-                    : `/Detail/${
-                        state.pokemon.data[state.detail.data.id + 1].name
-                      }`
+                    : `/Detail/${state.pokemon.data[state.detail.data.id].name}`
                 }
               >
                 <ChevronRight icon={faChevronRight} />
@@ -125,11 +119,9 @@ export default () => {
                       ? padLeadingZeros(1, 3)
                       : padLeadingZeros(state.detail.data.id + 1, 3)}
                   </span>
-                  {!state.detail.after.isLoading && (
-                    <span className="name">
-                      {state.pokemon.data[state.detail.data.id + 1].name}
-                    </span>
-                  )}
+                  <span className="name">
+                    {state.pokemon.data[state.detail.data.id].name}
+                  </span>
                 </PathContent>
               </PathRightStyled>
             </PathWrapper>
@@ -222,13 +214,15 @@ export default () => {
                     <Divider />
                     <LabelType>Type</LabelType>
                     <TypeWrap>
-                      <TypeStyled>
-                        {state.detail.data.types.map((node, i) => (
-                          <span key={i} className={`${node.type.name}`}>
-                            {node.type.name}
-                          </span>
-                        ))}
-                      </TypeStyled>
+                      {state.detail.data.types && (
+                        <TypeStyled>
+                          {state.detail.data.types.map((node, i) => (
+                            <span key={i} className={`${node.type.name}`}>
+                              {node.type.name}
+                            </span>
+                          ))}
+                        </TypeStyled>
+                      )}
                     </TypeWrap>
                   </div>
                 </Row>

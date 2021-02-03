@@ -151,8 +151,8 @@ export const ImageCanvas = styled.div`
 
 export const Row = styled.div`
   width: 100%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
 `
 
 export const Divider = styled.div`

@@ -57,12 +57,16 @@ export default () => {
         <Navbar />
         <CardWrap>
           {statePokemon.data.map((item, i) => {
-            return <PokeCard key={i} data={item} name={item.name} id={i} />
+            if (i < statePokemon.pagination.total - 1) {
+              return <PokeCard key={i} data={item} name={item.name} id={i} />
+            }
           })}
         </CardWrap>
-        <LoadingWrapper>
-          <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
-        </LoadingWrapper>
+        {statePokemon.data.length < statePokemon.pagination.total && (
+          <LoadingWrapper>
+            <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
+          </LoadingWrapper>
+        )}
       </ContentWrapper>
     </BgStyled>
   )
