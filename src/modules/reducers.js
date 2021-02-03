@@ -2,6 +2,9 @@ import {
   GET_POKELIST,
   GET_POKELIST_SUCCESS,
   GET_POKELIST_FAILED,
+  GET_POKEMON_DETAIL,
+  GET_POKEMON_DETAIL_SUCCESS,
+  GET_POKEMON_DETAIL_FAILED,
 } from "./constants"
 
 const initialState = {
@@ -42,6 +45,46 @@ export default (state = initialState, action) => {
         isLoading: false,
         hasError: true,
         errorMessage: action.payload.errorMessage,
+      }
+    case GET_POKEMON_DETAIL:
+      return {
+        ...state,
+        data: state.data.map((item, index) => {
+          if (index === action.payload.id) {
+            return {
+              ...item,
+              isLoading: true,
+            }
+          }
+        }),
+      }
+    case GET_POKEMON_DETAIL_SUCCESS:
+      return {
+        ...state,
+        data: state.data.map((item, index) => {
+          if (index === action.payload.id) {
+            return {
+              ...item,
+              ...action.payload.data,
+              isLoading: false,
+            }
+          }
+        }),
+      }
+    case GET_POKEMON_DETAIL_FAILED:
+      return {
+        ...state,
+        data: state.data.map((item, index) => {
+          if (index === action.payload.id) {
+            return {
+              ...item,
+              ...action.payload.data,
+              isLoading: false,
+              hasError: true,
+              errorMessage: action.payload.errorMessage,
+            }
+          }
+        }),
       }
     default:
       return state

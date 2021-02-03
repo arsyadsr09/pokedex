@@ -109,6 +109,7 @@ export const PokemonContent = styled.div`
 `
 
 export const PokemonTitle = styled.span`
+  text-transform: capitalize;
   margin: 0.5rem 0.8rem;
   font-family: "FlexoBold", sans-serif;
   font-size: 1.4rem;
