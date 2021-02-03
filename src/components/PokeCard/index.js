@@ -22,7 +22,7 @@ export default (props) => {
 
   useEffect(() => {
     if (!props.data.id) {
-      dispatch(getPokemon(props.id, props.name))
+      dispatch(getPokemon(props.name))
     }
   }, [])
 
