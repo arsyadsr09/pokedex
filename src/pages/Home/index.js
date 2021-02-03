@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, useState } from "react"
-import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
 import { getPokemonList } from "../../modules/actions"
 import PokeCard from "../../components/PokeCard"
@@ -7,18 +6,7 @@ import { HashLoader } from "react-spinners"
 
 import debounce from "lodash.debounce"
 
-const CardWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`
-
-const LoadingWrapper = styled.div`
-  margin: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+import { CardWrap, LoadingWrapper } from "./styled"
 
 export default () => {
   const statePokemon = useSelector((state) => state)
@@ -64,11 +52,11 @@ export default () => {
     <>
       <CardWrap>
         {statePokemon.data.map((item, i) => {
-          return <PokeCard key={i} name={item.name} id={i} />
+          return <PokeCard key={i} data={item} name={item.name} id={i} />
         })}
       </CardWrap>
       <LoadingWrapper>
-        <HashLoader loading={statePokemon.isLoading} color="#ff416c" />
+        <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
       </LoadingWrapper>
     </>
   )
