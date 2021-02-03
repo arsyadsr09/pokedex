@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getPokemonList } from "../../modules/actions"
+import { getPokemonList } from "../../modules/pokemon/action"
 import PokeCard from "../../components/PokeCard"
 import Navbar from "../../layouts/Navbar"
 import { HashLoader } from "react-spinners"
@@ -12,7 +12,7 @@ import BgGrey from "../../assets/images/container_bg.png"
 import { BgStyled } from "../../layouts/styles"
 
 export default () => {
-  const statePokemon = useSelector((state) => state)
+  const statePokemon = useSelector((state) => state.pokemon)
   const dispatch = useDispatch()
   const [isBottom, setIsBottom] = useState(false)
 
