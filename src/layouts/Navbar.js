@@ -11,11 +11,6 @@ const NavbarStyled = styled.div`
   align-items: center;
 `
 
-// const Logo = styled.img`
-//   width: 5rem;
-//   object-fit: cover;
-// `
-
 export default () => (
   <NavbarStyled>
     <img src={Logo} width={250} alt="logo" />

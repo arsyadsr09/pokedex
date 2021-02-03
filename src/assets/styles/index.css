@@ -12,8 +12,8 @@ body {
   background-color: rgba(0, 0, 0, 0.03);
   min-height: 100vh;
 }
-
-code {
+/* 
+.flexoBold {
   font-family: "FlexoBold", sans-serif;
   /* font-weight: 400; */
-}
+
