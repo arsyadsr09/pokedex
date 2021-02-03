@@ -27,6 +27,13 @@ export default (state = initialState, action) => {
         isLoading: true,
         hasError: false,
       }
+    case GET_POKELIST_AND_RESET:
+      return {
+        ...state,
+        data: [],
+        isLoading: true,
+        hasError: false,
+      }
     case GET_POKELIST_SUCCESS:
       return {
         ...state,

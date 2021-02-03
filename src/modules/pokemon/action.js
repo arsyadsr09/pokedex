@@ -46,7 +46,7 @@ export const getPokemonList = (page = 1) => async (dispatch) => {
   }
 }
 
-export const getPokemon = (id, name) => async (dispatch) => {
+export const getPokemon = (name) => async (dispatch) => {
   dispatch({
     type: GET_POKEMON_DETAIL,
     payload: {
