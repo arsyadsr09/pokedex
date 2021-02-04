@@ -12,6 +12,8 @@ const initialState = {
   specie: {},
   evolution: {},
   evo_detail: {},
+  before: {},
+  after: {},
 }
 
 export default (state = initialState, action) => {
@@ -30,6 +32,8 @@ export default (state = initialState, action) => {
         specie: action.payload.specie,
         evolution: action.payload.evolution,
         evoDetail: action.payload.evoDetail,
+        before: action.payload.before,
+        after: action.payload.after,
       }
     case GET_POKEMON_DETAIL_PAGE_FAILED:
       return {
@@ -39,32 +43,6 @@ export default (state = initialState, action) => {
         errorMessage: action.payload.errorMessage,
       }
 
-    // case GET_POKEMON_EVOLUTION:
-    //   return {
-    //     ...state,
-    //     evolution: {
-    //       ...state.evolution,
-    //       isLoading: true,
-    //       hasError: false,
-    //     },
-    //   }
-    // case GET_POKEMON_EVOLUTION_SUCCESS:
-    //   return {
-    //     ...state,
-    //     evolution: {
-    //       ...state.evolution,
-    //       evo_detail: [...evo_detail, action.payload.data],
-    //     },
-    //   }
-    // case GET_POKEMON_EVOLUTION_FAILED:
-    //   return {
-    //     ...state,
-    //     evolution: {
-    //       ...state.evolution,
-    //       isLoading: true,
-    //       hasError: false,
-    //     },
-    //   }
     default:
       return state
   }

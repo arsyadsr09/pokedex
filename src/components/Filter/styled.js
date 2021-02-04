@@ -21,6 +21,8 @@ export const FilterButton = styled.div`
     left: 27.4%;
     height: 270px;
 
+    clip-path: polygon(100% 0, 100% 93%, 75% 100%, 0 100%, 0 0);
+
     .filter-icon {
       opacity: 1;
     }
@@ -82,6 +84,7 @@ export const InnerSubmitButton = styled.div`
   width: 60px;
   clip-path: polygon(100% 0, 100% 88%, 75% 100%, 0 100%, 0 0);
   display: flex;
+  background: #2f3542;
   justify-content: center;
   align-items: center;
 
@@ -112,6 +115,7 @@ export const InnerResetButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #2f3542;
 
   &:hover {
     transition: all 0.5s ease;
@@ -166,7 +170,7 @@ export const FilterCanvas = styled.div`
   width: 0;
   z-index: 5;
   height: 22.5rem;
-  clip-path: polygon(100% 0, 100% 88%, 85% 100%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% 93%, 88% 100%, 0 100%, 0 0);
   display: flex;
   justify-content: center;
   // align-items: center;

@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { getPokemonTypes } from "../../modules/types/action"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -21,10 +22,10 @@ import {
   ResetIcon,
 } from "./styled"
 import { getPokemonByType } from "../../modules/types/action"
-import { getPokemonList } from "../../modules/pokemon/action"
+import { getPokemonList, resetPokemonList } from "../../modules/pokemon/action"
 
 export default () => {
-  const stateTypes = useSelector((state) => state.types)
+  const state = useSelector((state) => state)
   const dispatch = useDispatch()
   const [show, setShow] = useState(false)
   const [filter, setFilter] = useState("")
@@ -34,12 +35,17 @@ export default () => {
     setShow(!show)
   }
 
+  useEffect(() => {
+    dispatch(getPokemonTypes())
+  }, [])
+
   const onSubmit = () => {
     dispatch(getPokemonByType(filter))
     setShow(false)
   }
 
   const onReset = () => {
+    dispatch(resetPokemonList())
     dispatch(getPokemonList())
     setShow(false)
   }
@@ -62,9 +68,9 @@ export default () => {
         </InnerResetButton>
       </FilterButton>
       <FilterCanvas className={show ? "active" : ""}>
-        {stateTypes.data && (
+        {state.types.data && (
           <FilterTypeStyled>
-            {stateTypes.data.map((node, i) => (
+            {state.types.data.map((node, i) => (
               <span
                 key={i}
                 onClick={() => setFilter(node.name)}

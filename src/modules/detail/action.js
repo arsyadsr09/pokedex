@@ -15,6 +15,18 @@ export const getPokemonDetailPage = (name) => async (dispatch, getState) => {
   try {
     const pokemon = await axios.get(`${API_URL}/pokemon/${name}`)
     const pokemonData = pokemon.data
+    let beforeData
+    let afterData
+
+    if (pokemonData.id - 1 > 0) {
+      const before = await axios.get(`${API_URL}/pokemon/${pokemonData.id - 1}`)
+      beforeData = before.data
+    }
+
+    if (pokemonData.id + 1 < getState().pokemon.pagination.total) {
+      const after = await axios.get(`${API_URL}/pokemon/${pokemonData.id + 1}`)
+      afterData = after.data
+    }
 
     const specie = await axios.get(pokemonData.species.url)
     const specieData = specie.data
@@ -54,6 +66,8 @@ export const getPokemonDetailPage = (name) => async (dispatch, getState) => {
         specie: specieData,
         evolution: evolutionData,
         evoDetail,
+        before: beforeData,
+        after: afterData,
       },
     })
     if (pokemonData.id >= getState().pokemon.pagination.currentPage * 20 - 1) {

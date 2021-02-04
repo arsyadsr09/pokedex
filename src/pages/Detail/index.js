@@ -43,7 +43,6 @@ import {
 
 import { LoadingWrapper } from "../Home/styled"
 import { getPokemonDetailPage } from "../../modules/detail/action"
-import { getPokemonList } from "../../modules/pokemon/action"
 
 export default () => {
   const state = useSelector((state) => state)
@@ -51,6 +50,7 @@ export default () => {
   const { name } = useParams()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     dispatch(getPokemonDetailPage(name))
   }, [name])
 
@@ -70,58 +70,51 @@ export default () => {
       <ContainerWrapper>
         {state.detail.isLoading || state.detail.data.name === undefined ? (
           <LoadingWrapper>
-            <SyncLoader size={5} color="#ff416c" />
+            <SyncLoader size={10} color="#ff416c" />
           </LoadingWrapper>
         ) : (
           <>
             <PathWrapper>
               <PathLeftStyled
-                className={state.detail.data.id - 1 <= 0 ? "disabled" : ""}
+                className={!state.detail.before && "disabled"}
                 to={
-                  state.detail.data.id - 1 > 0
-                    ? `/Detail/${
-                        state.pokemon.data[state.detail.data.id - 2].name
-                      }`
+                  state.detail.before
+                    ? `/Detail/${state.detail.before.name}`
                     : ""
                 }
               >
                 <ChevronLeft icon={faChevronLeft} />
                 <PathContent>
                   <span className="number">
-                    {state.detail.data.id - 1 <= 0
-                      ? "-"
-                      : "#" + padLeadingZeros(state.detail.data.id - 1, 3)}
+                    {state.detail.before
+                      ? "#" + padLeadingZeros(state.detail.before.id, 3)
+                      : "-"}
                   </span>
-                  <span className="name">
-                    {state.detail.data.id - 1 <= 0
-                      ? "-"
-                      : state.pokemon.data[state.detail.data.id - 2].name}
-                  </span>
+                  {state.detail.before && (
+                    <span className="name">
+                      {state.detail.before ? "-" : state.detail.before.name}
+                    </span>
+                  )}
                 </PathContent>
               </PathLeftStyled>
               <PathRightStyled
-                className={
-                  state.detail.data.id + 1 >= state.pokemon.pagination.total
-                    ? "disabled"
-                    : ""
-                }
+                className={!state.detail.after && "disabled"}
                 to={
-                  state.detail.data.id + 1 >= state.pokemon.pagination.total
-                    ? ""
-                    : `/Detail/${state.pokemon.data[state.detail.data.id].name}`
+                  state.detail.after
+                    ? `/Detail/${state.detail.after.name}`
+                    : "-"
                 }
               >
                 <ChevronRight icon={faChevronRight} />
                 <PathContent>
                   <span className="number">
-                    #
-                    {state.detail.data.id + 1 >= state.pokemon.pagination.total
-                      ? padLeadingZeros(1, 3)
-                      : padLeadingZeros(state.detail.data.id + 1, 3)}
+                    {state.detail.after
+                      ? "#" + padLeadingZeros(state.detail.after.id, 3)
+                      : "-"}
                   </span>
-                  <span className="name">
-                    {state.pokemon.data[state.detail.data.id].name}
-                  </span>
+                  {state.detail.after && (
+                    <span className="name">{state.detail.after.name}</span>
+                  )}
                 </PathContent>
               </PathRightStyled>
             </PathWrapper>

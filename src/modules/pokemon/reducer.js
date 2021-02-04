@@ -34,6 +34,11 @@ export default (state = initialState, action) => {
         data: [],
         isLoading: true,
         hasError: false,
+        pagination: {
+          currentPage: 1,
+          hasNext: false,
+          total: 0,
+        },
       }
     case GET_POKELIST_SUCCESS:
       return {

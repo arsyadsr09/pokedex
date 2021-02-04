@@ -7,6 +7,7 @@ import {
   GET_POKEMON_DETAIL,
   GET_POKEMON_DETAIL_SUCCESS,
   GET_POKEMON_DETAIL_FAILED,
+  GET_POKELIST_AND_RESET,
 } from "../constants"
 
 export const getPokemonList = (page = 1) => async (dispatch) => {
@@ -72,4 +73,10 @@ export const getPokemon = (name) => async (dispatch) => {
       },
     })
   }
+}
+
+export const resetPokemonList = () => async (dispatch) => {
+  dispatch({
+    type: GET_POKELIST_AND_RESET,
+  })
 }

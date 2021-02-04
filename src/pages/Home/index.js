@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPokemonList } from "../../modules/pokemon/action"
-import { getPokemonTypes } from "../../modules/types/action"
 import PokeCard from "../../components/PokeCard"
 import Filter from "../../components/Filter"
 import Navbar from "../../layouts/Navbar"
@@ -32,15 +31,17 @@ export default () => {
 
   const onScroll = useCallback(
     debounce(() => {
-      dispatch(getPokemonList(statePokemon.pagination.currentPage + 1))
+      if (statePokemon.pagination.hasNext) {
+        dispatch(getPokemonList(statePokemon.pagination.currentPage + 1))
+      }
       setIsBottom(false)
     }, 400),
     [isBottom]
   )
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     dispatch(getPokemonList())
-    dispatch(getPokemonTypes())
   }, [])
 
   useEffect(() => {
@@ -63,11 +64,7 @@ export default () => {
             <Navbar />
             <CardWrap>
               {statePokemon.data.map((item, i) => {
-                if (i < statePokemon.pagination.total - 1) {
-                  return (
-                    <PokeCard key={i} data={item} name={item.name} id={i} />
-                  )
-                }
+                return <PokeCard key={i} data={item} name={item.name} id={i} />
               })}
             </CardWrap>
             {statePokemon.data.length < statePokemon.pagination.total && (
