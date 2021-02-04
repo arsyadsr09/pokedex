@@ -1,4 +1,8 @@
-import { GET_POKEMON_TYPE, GET_POKEMON_TYPE_SUCCESS } from "../actions"
+import {
+  GET_POKEMON_TYPE,
+  GET_POKEMON_TYPE_SUCCESS,
+  GET_POKEMON_TYPE_FAILED,
+} from "../constants"
 
 const initialState = {
   isLoading: false,

@@ -18,3 +18,7 @@ export const ContentWrapper = styled.div`
   min-height: 100vh;
   background-color: white;
 `
+
+export const NoOverflow = styled.div`
+  overflow: hidden;
+`

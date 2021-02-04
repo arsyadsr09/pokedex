@@ -1,15 +1,17 @@
 import React, { useEffect, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getPokemonList } from "../../modules/pokemon/action"
+import { getPokemonTypes } from "../../modules/types/action"
 import PokeCard from "../../components/PokeCard"
+import Filter from "../../components/Filter"
 import Navbar from "../../layouts/Navbar"
 import { HashLoader } from "react-spinners"
 
 import debounce from "lodash.debounce"
 
-import { CardWrap, LoadingWrapper, ContentWrapper } from "./styled"
+import { CardWrap, LoadingWrapper, ContentWrapper, NoOverflow } from "./styled"
 import BgGrey from "../../assets/images/container_bg.png"
-import { BgStyled } from "../../layouts/styles"
+import { BgStyled } from "../../layouts/styled"
 
 export default () => {
   const statePokemon = useSelector((state) => state.pokemon)
@@ -38,6 +40,7 @@ export default () => {
 
   useEffect(() => {
     dispatch(getPokemonList())
+    dispatch(getPokemonTypes())
   }, [])
 
   useEffect(() => {
@@ -52,22 +55,29 @@ export default () => {
   }, [])
 
   return (
-    <BgStyled img={BgGrey}>
-      <ContentWrapper>
-        <Navbar />
-        <CardWrap>
-          {statePokemon.data.map((item, i) => {
-            if (i < statePokemon.pagination.total - 1) {
-              return <PokeCard key={i} data={item} name={item.name} id={i} />
-            }
-          })}
-        </CardWrap>
-        {statePokemon.data.length < statePokemon.pagination.total && (
-          <LoadingWrapper>
-            <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
-          </LoadingWrapper>
-        )}
-      </ContentWrapper>
-    </BgStyled>
+    <>
+      <NoOverflow>
+        <Filter />
+        <BgStyled img={BgGrey}>
+          <ContentWrapper>
+            <Navbar />
+            <CardWrap>
+              {statePokemon.data.map((item, i) => {
+                if (i < statePokemon.pagination.total - 1) {
+                  return (
+                    <PokeCard key={i} data={item} name={item.name} id={i} />
+                  )
+                }
+              })}
+            </CardWrap>
+            {statePokemon.data.length < statePokemon.pagination.total && (
+              <LoadingWrapper>
+                <HashLoader loading={statePokemon.isLoading} color="#2f3542" />
+              </LoadingWrapper>
+            )}
+          </ContentWrapper>
+        </BgStyled>
+      </NoOverflow>
+    </>
   )
 }

@@ -5,8 +5,8 @@ import {
   GET_POKELIST_SUCCESS,
   GET_POKEMON_TYPE_FAILED,
   GET_POKELIST_FAILED,
-} from "../actions"
-import { API_URL } from "../../constants"
+} from "../constants"
+import { API_URL } from "../../configs"
 import axios from "axios"
 
 export const getPokemonTypes = () => async (dispatch) => {

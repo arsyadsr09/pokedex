@@ -14,7 +14,7 @@ import Evolution from "../../components/Evolution"
 import Stats from "../../components/Stats"
 import Navbar from "../../layouts/Navbar"
 import BgContainer from "../../assets/images/container_bg.png"
-import { BgStyled } from "../../layouts/styles"
+import { BgStyled } from "../../layouts/styled"
 import {
   PathLeftStyled,
   PathRightStyled,

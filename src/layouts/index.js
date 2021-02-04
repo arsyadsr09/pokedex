@@ -5,7 +5,7 @@ import {
   BgStyled,
   ContentStyled,
   ContainerStyled,
-} from "./styles"
+} from "./styled"
 
 export default (props) => (
   <BgStyled img={BgBlack}>
