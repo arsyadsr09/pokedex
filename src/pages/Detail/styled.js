@@ -166,7 +166,7 @@ export const FlavorText = styled.div`
 
 export const GeneralCard = styled.div`
   background-color #1e90ff;
-  padding: 1rem 0;
+  padding: 1rem;
   width:100%;
   min-height: 10rem;
   border-radius: 8px;

@@ -26,7 +26,7 @@ export const ContentStyled = styled.div`
 
 export const NavbarStyled = styled.div`
   padding: 1rem;
-  margin: auto 2rem;
+  margin: 0 2rem;
   margin-bottom: 2rem;
 
   display: flex;

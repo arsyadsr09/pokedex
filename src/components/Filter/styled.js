@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const FilterButton = styled.div`
   position: fixed;
-  top: 20%;
+  top: 30%;
   left: 12.5%;
   height: 90px;
   width: 60px;
@@ -165,7 +165,7 @@ export const FilterCanvas = styled.div`
   background: #2f3542;
   position: fixed;
   padding: 1rem 0 20px 0;
-  top: 20%;
+  top: 30%;
   left: 12.5%;
   width: 0;
   z-index: 5;

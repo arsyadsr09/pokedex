@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getPokemonList } from "../../modules/pokemon/action"
 import PokeCard from "../../components/PokeCard"
 import Filter from "../../components/Filter"
+import Compare from "../../components/Compare"
 import Navbar from "../../layouts/Navbar"
 import { HashLoader } from "react-spinners"
 
@@ -59,6 +60,7 @@ export default () => {
     <>
       <NoOverflow>
         <Filter />
+        <Compare />
         <BgStyled img={BgGrey}>
           <ContentWrapper>
             <Navbar />

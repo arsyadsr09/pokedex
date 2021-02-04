@@ -92,7 +92,7 @@ export default () => {
                   </span>
                   {state.detail.before && (
                     <span className="name">
-                      {state.detail.before ? "-" : state.detail.before.name}
+                      {!state.detail.before ? "-" : state.detail.before.name}
                     </span>
                   )}
                 </PathContent>
