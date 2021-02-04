@@ -19,7 +19,7 @@ export const FilterButton = styled.div`
     transition: all 0.5s ease;
     padding: 0;
     left: 27.4%;
-    height: 180px;
+    height: 270px;
 
     .filter-icon {
       opacity: 1;
@@ -29,11 +29,19 @@ export const FilterButton = styled.div`
       opacity: 1;
     }
 
+    .reset-icon {
+      opacity: 1;
+    }
+
     .inner-filter {
       background: #ff4757;
     }
 
     .inner-submit {
+      height: 90px;
+    }
+
+    .inner-reset {
       height: 90px;
     }
   }
@@ -96,6 +104,34 @@ export const InnerSubmitButton = styled.div`
   }
 `
 
+export const InnerResetButton = styled.div`
+  transition: all 0.5s ease;
+  height: 0;
+  width: 60px;
+  clip-path: polygon(100% 0, 100% 88%, 75% 100%, 0 100%, 0 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    transition: all 0.5s ease;
+    .inner-reset {
+      transition: all 0.5s ease;
+      height: 90px;
+      width: 60px;
+    }
+
+    .reset-icon {
+      transition: all 1.3s ease;
+      -o-transform: rotate(720deg);
+      -ms-transform: rotate(720deg);
+      -moz-transform: rotate(720deg);
+      -webkit-transform: rotate(720deg);
+      transform: rotate(720deg);
+    }
+  }
+`
+
 export const FilterIcon = styled(FontAwesomeIcon)`
   transition: all 0.5s ease;
   color: white;
@@ -107,6 +143,14 @@ export const FilterIcon = styled(FontAwesomeIcon)`
 export const SubmitIcon = styled(FontAwesomeIcon)`
   transition: all 0.5s ease;
   color: #2ed573;
+  font-size: 2.5rem;
+  opacity: 0.5;
+  z-index: 1;
+`
+
+export const ResetIcon = styled(FontAwesomeIcon)`
+  transition: all 0.5s ease;
+  color: #1e90ff;
   font-size: 2.5rem;
   opacity: 0.5;
   z-index: 1;

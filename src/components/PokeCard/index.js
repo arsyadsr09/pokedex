@@ -40,7 +40,7 @@ export default (props) => {
           <PokemonImage
             className="pokemon-image"
             img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padLeadingZeros(
-              props.id + 1,
+              props.data.id,
               3
             )}.png`}
           />

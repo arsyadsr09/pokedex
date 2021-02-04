@@ -2,18 +2,26 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilter, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons"
+import {
+  faFilter,
+  faTimes,
+  faCheck,
+  faUndo,
+} from "@fortawesome/free-solid-svg-icons"
 
 import {
   FilterButton,
   InnerFilterButton,
   InnerSubmitButton,
+  InnerResetButton,
   FilterIcon,
   FilterCanvas,
   FilterTypeStyled,
   SubmitIcon,
+  ResetIcon,
 } from "./styled"
 import { getPokemonByType } from "../../modules/types/action"
+import { getPokemonList } from "../../modules/pokemon/action"
 
 export default () => {
   const stateTypes = useSelector((state) => state.types)
@@ -31,6 +39,11 @@ export default () => {
     setShow(false)
   }
 
+  const onReset = () => {
+    dispatch(getPokemonList())
+    setShow(false)
+  }
+
   return (
     <>
       <FilterButton className={show ? "active" : ""}>
@@ -44,6 +57,9 @@ export default () => {
         <InnerSubmitButton onClick={onSubmit} className="inner-submit">
           <SubmitIcon className="submit-icon" icon={faCheck} />
         </InnerSubmitButton>
+        <InnerResetButton onClick={onReset} className="inner-reset">
+          <ResetIcon className="reset-icon" icon={faUndo} />
+        </InnerResetButton>
       </FilterButton>
       <FilterCanvas className={show ? "active" : ""}>
         {stateTypes.data && (
