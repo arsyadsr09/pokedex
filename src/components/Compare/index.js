@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { faBalanceScale, faTimes } from "@fortawesome/free-solid-svg-icons"
 import axios from "axios"
 import { SyncLoader } from "react-spinners"
@@ -47,8 +47,12 @@ export default () => {
       console.log(e)
     }
   }
+  useEffect(() => {}, [firstPokemonPoint, secondPokemonPoint])
 
   const onExecute = async () => {
+    console.log(firstPokemonPoint)
+    console.log(secondPokemonPoint)
+
     setIsLoading(true)
     try {
       const firstPokemonData = await getPokemonDetail(firstPokemonController)
@@ -62,13 +66,13 @@ export default () => {
           if (i.stat.name === j.stat.name) {
             console.log(i.base_stat > j.base_stat)
             if (i.base_stat > j.base_stat) {
-              console.log('first', i.stat.name)
+              console.log("first", i.stat.name)
               setFirstPokemonPoint(firstPokemonPoint++)
             } else if (i.base_stat < j.base_stat) {
-              console.log('second', i.stat.name)
+              console.log("second", i.stat.name)
               setSecondPokemonPoint(secondPokemonPoint++)
-            } else if(i.base_stat === j.base_stat) {
-              console.log('both', i.stat.name)
+            } else if (i.base_stat === j.base_stat) {
+              console.log("both", i.stat.name)
               setFirstPokemonPoint(firstPokemonPoint++)
               setSecondPokemonPoint(secondPokemonPoint++)
             }
@@ -84,6 +88,12 @@ export default () => {
 
   const onClose = () => {
     setShow(!show)
+    setFirstPokemonPoint(1)
+    setSecondPokemonPoint(1)
+    setFirstPokemon(undefined)
+    setSecondPokemon(undefined)
+    setFirstPokemonController("")
+    setSecondPokemonController("")
   }
 
   const padLeadingZeros = (num, size) => {
@@ -121,7 +131,14 @@ export default () => {
                 className="form-control"
                 id="first_pokemon"
                 placeholder="Name or Number Pokemon 1"
-                onChange={(e) => setFirstPokemonController(e.target.value)}
+                value={firstPokemonController}
+                onChange={(e) => {
+                  setFirstPokemonPoint(1)
+                  setSecondPokemonPoint(1)
+                  setFirstPokemon(undefined)
+                  setSecondPokemon(undefined)
+                  setFirstPokemonController(e.target.value)
+                }}
               />
             </div>
             <BtnExecute
@@ -136,7 +153,14 @@ export default () => {
                 className="form-control"
                 id="second_pokemon"
                 placeholder="Name or Number Pokemon 2"
-                onChange={(e) => setSecondPokemonController(e.target.value)}
+                value={secondPokemonController}
+                onChange={(e) => {
+                  setFirstPokemonPoint(1)
+                  setSecondPokemonPoint(1)
+                  setFirstPokemon(undefined)
+                  setSecondPokemon(undefined)
+                  setSecondPokemonController(e.target.value)
+                }}
               />
             </div>
           </Row>
@@ -210,18 +234,24 @@ export default () => {
                       </WinValueCompare>
                       <LabelCompare>Win Rate</LabelCompare>
                       <LoseValueCompare style={{ fontSize: "3.5vw" }}>
-                        {Math.round((secondPokemonPoint / 6) * 100)}%
+                        {secondPokemonPoint === 0
+                          ? 0
+                          : Math.round((secondPokemonPoint / 6) * 100)}
+                        %
                       </LoseValueCompare>
                     </>
                   ) : (
                     <>
-                      <LoseValueCompare
-                        style={{ color: "#ffa502", fontSize: "4vw" }}
-                      >
-                        {Math.round((firstPokemonPoint / 6) * 100)}%
+                      <LoseValueCompare style={{ fontSize: "3.5vw" }}>
+                        {firstPokemonPoint === 0
+                          ? 0
+                          : Math.round((firstPokemonPoint / 6) * 100)}
+                        %
                       </LoseValueCompare>
                       <LabelCompare>Win Rate</LabelCompare>
-                      <WinValueCompare style={{ fontSize: "3.5vw" }}>
+                      <WinValueCompare
+                        style={{ color: "#ffa502", fontSize: "4vw" }}
+                      >
                         {Math.round((secondPokemonPoint / 6) * 100)}%
                       </WinValueCompare>
                     </>
@@ -363,11 +393,11 @@ export default () => {
                         return (
                           <>
                             {i.base_stat >= j.base_stat ? (
-                              <WinValueCompare key={i}>
+                              <WinValueCompare key={j}>
                                 {i.base_stat}
                               </WinValueCompare>
                             ) : (
-                              <LoseValueCompare key={i}>
+                              <LoseValueCompare key={j}>
                                 {i.base_stat}
                               </LoseValueCompare>
                             )}
@@ -397,11 +427,11 @@ export default () => {
                         return (
                           <>
                             {i.base_stat >= j.base_stat ? (
-                              <WinValueCompare key={i}>
+                              <WinValueCompare key={j}>
                                 {i.base_stat}
                               </WinValueCompare>
                             ) : (
-                              <LoseValueCompare key={i}>
+                              <LoseValueCompare key={j}>
                                 {i.base_stat}
                               </LoseValueCompare>
                             )}
@@ -431,11 +461,11 @@ export default () => {
                         return (
                           <>
                             {i.base_stat >= j.base_stat ? (
-                              <WinValueCompare key={i}>
+                              <WinValueCompare key={j}>
                                 {i.base_stat}
                               </WinValueCompare>
                             ) : (
-                              <LoseValueCompare key={i}>
+                              <LoseValueCompare key={j}>
                                 {i.base_stat}
                               </LoseValueCompare>
                             )}
@@ -465,11 +495,11 @@ export default () => {
                         return (
                           <>
                             {i.base_stat >= j.base_stat ? (
-                              <WinValueCompare key={i}>
+                              <WinValueCompare key={j}>
                                 {i.base_stat}
                               </WinValueCompare>
                             ) : (
-                              <LoseValueCompare key={i}>
+                              <LoseValueCompare key={j}>
                                 {i.base_stat}
                               </LoseValueCompare>
                             )}
@@ -499,11 +529,11 @@ export default () => {
                         return (
                           <>
                             {i.base_stat >= j.base_stat ? (
-                              <WinValueCompare key={i}>
+                              <WinValueCompare key={j}>
                                 {i.base_stat}
                               </WinValueCompare>
                             ) : (
-                              <LoseValueCompare key={i}>
+                              <LoseValueCompare key={j}>
                                 {i.base_stat}
                               </LoseValueCompare>
                             )}
@@ -530,11 +560,11 @@ export default () => {
                         return (
                           <>
                             {i.base_stat >= j.base_stat ? (
-                              <WinValueCompare key={i}>
+                              <WinValueCompare key={j}>
                                 {i.base_stat}
                               </WinValueCompare>
                             ) : (
-                              <LoseValueCompare key={i}>
+                              <LoseValueCompare key={j}>
                                 {i.base_stat}
                               </LoseValueCompare>
                             )}
