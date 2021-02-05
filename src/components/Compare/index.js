@@ -36,8 +36,8 @@ export default () => {
   const [secondPokemon, setSecondPokemon] = useState(undefined)
   const [firstPokemonController, setFirstPokemonController] = useState("")
   const [secondPokemonController, setSecondPokemonController] = useState("")
-  let [firstPokemonPoint, setFirstPokemonPoint] = useState(0)
-  let [secondPokemonPoint, setSecondPokemonPoint] = useState(0)
+  let [firstPokemonPoint, setFirstPokemonPoint] = useState(1)
+  let [secondPokemonPoint, setSecondPokemonPoint] = useState(1)
 
   const getPokemonDetail = async (value) => {
     try {
@@ -62,10 +62,13 @@ export default () => {
           if (i.stat.name === j.stat.name) {
             console.log(i.base_stat > j.base_stat)
             if (i.base_stat > j.base_stat) {
+              console.log('first', i.stat.name)
               setFirstPokemonPoint(firstPokemonPoint++)
             } else if (i.base_stat < j.base_stat) {
+              console.log('second', i.stat.name)
               setSecondPokemonPoint(secondPokemonPoint++)
-            } else {
+            } else if(i.base_stat === j.base_stat) {
+              console.log('both', i.stat.name)
               setFirstPokemonPoint(firstPokemonPoint++)
               setSecondPokemonPoint(secondPokemonPoint++)
             }
@@ -196,8 +199,6 @@ export default () => {
               <Divider />
               <Divider />
               <Row className="row">
-                {firstPokemonPoint}
-                {secondPokemonPoint}
                 <div className="col-12 d-flex justify-content-center align-items-center">
                   {(firstPokemonPoint / 6) * 100 >
                   (secondPokemonPoint / 6) * 100 ? (
