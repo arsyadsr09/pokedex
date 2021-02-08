@@ -23,7 +23,8 @@ export const EvolutionTitle = styled.div`
   color: white;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
 `
 
 export const EvolutionPer = styled.div`
@@ -46,7 +47,8 @@ export const EvolutionPerTitle = styled.div`
   margin-right: 0.5rem;
   color: white;
   font-size: 1.4rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   text-transform: capitalize;
 `
 

@@ -119,13 +119,15 @@ export const PokemonContent = styled.div`
 export const PokemonTitle = styled.span`
   text-transform: capitalize;
   margin: 0.5rem 0.8rem 0 0.8rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   font-size: 1.4rem;
   color: #2f3542;
 `
 
 export const PokemonNumber = styled.span`
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   padding: 0 5px;
   font-size: 0.8rem;
   color: #747d8c;

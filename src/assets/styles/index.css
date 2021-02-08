@@ -1,10 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import url(//db.onlinewebfonts.com/c/51ba22ae06790efd464bde752a2cd9d1?family=Flexo);
-@import url(//db.onlinewebfonts.com/c/6e1ef15c406d6f6aca64916d713fae18?family=FlexoBold);
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;600&display=swap");
 
 body {
   margin: 0;
-  font-family: "Flexo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  font-family: "Exo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,6 +13,5 @@ body {
 }
 /* 
 .flexoBold {
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
   /* font-weight: 400; */
-

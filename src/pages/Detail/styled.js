@@ -77,7 +77,8 @@ export const PathContent = styled.div`
   align-items: center;
 
   span {
-    font-family: "FlexoBold", sans-serif;
+    font-family: "Exo", sans-serif;
+    font-weight: 600;
     font-size: 2rem;
     &.number {
       margin-right: 10px;
@@ -129,7 +130,8 @@ export const ContentWrapper = styled.div`
 export const TitleStyled = styled.span`
   text-transform: capitalize;
   margin: -1rem 0.8rem 0 0.8rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   font-size: 2.4rem;
   color: #2f3542;
 `
@@ -137,7 +139,7 @@ export const TitleStyled = styled.span`
 export const NumberStyled = styled.span`
   text-transform: capitalize;
   margin: -1rem 0.8rem 0 0.2rem;
-  font-family: "Flexo", sans-serif;
+  font-family: 'Exo', sans-serif;
   font-size: 2.4rem;
   color: #747d8c;
 `
@@ -185,7 +187,8 @@ export const LabelGeneralInfo = styled.span`
 
 export const ValueGeneralInfo = styled.span`
   color: white;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   font-size: 18px;
   text-transform: capitalize;
   display: flex;
@@ -230,7 +233,8 @@ export const TypeStyled = styled.span`
     color: #fff;
     margin-right: 2px;
     font-size: 1rem;
-    font-family: "FlexoBold", sans-serif;
+    font-family: "Exo", sans-serif;
+    font-weight: 600;
   }
 
   .normal {

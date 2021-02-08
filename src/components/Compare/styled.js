@@ -103,7 +103,8 @@ export const CompareTitle = styled.div`
   transition: all 1s ease;
   color: white;
   font-size: 4rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
 `
 
 export const CompareVersus = styled.div`
@@ -112,7 +113,8 @@ export const CompareVersus = styled.div`
   top: 40vh;
   color: white;
   font-size: 6rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   z-index: 6;
 `
 
@@ -252,7 +254,8 @@ export const HeaderStyled = styled.div`
 export const TitleRightStyled = styled.span`
   text-transform: capitalize;
   margin: 0rem 0.8rem 0 0;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   font-size: 2.4vw;
   color: white;
   align-self: flex-end;
@@ -261,7 +264,7 @@ export const TitleRightStyled = styled.span`
 export const NumberRightStyled = styled.div`
   text-transform: capitalize;
   padding: 0.5rem 1.2vw 0 2.4vw;
-  font-family: "Flexo", sans-serif;
+  font-family: 'Exo', sans-serif;
   font-size: 2.2vw;
   color: #747d8c;
 `
@@ -269,7 +272,8 @@ export const NumberRightStyled = styled.div`
 export const TitleLeftStyled = styled.span`
   text-transform: capitalize;
   margin: 0rem 0.8rem 0 0;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   font-size: 2.4vw;
   color: white;
 `
@@ -277,7 +281,7 @@ export const TitleLeftStyled = styled.span`
 export const NumberLeftStyled = styled.div`
   text-transform: capitalize;
   margin: 0.5rem 2.4vw 0 1vw;
-  font-family: "Flexo", sans-serif;
+  font-family: 'Exo', sans-serif;
   font-size: 2.2vw;
   color: #747d8c;
   align-self: flex-end;
@@ -313,7 +317,8 @@ export const LabelCompare = styled.div`
 export const WinValueCompare = styled.div`
   // margin: 1rem 0;
   color: white;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   font-size: 3vw;
   text-transform: capitalize;
 `
@@ -323,7 +328,8 @@ export const LoseValueCompare = styled.div`
   color: #57606f;
   font-size: 2.5vw;
   text-transform: capitalize;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
 `
 
 export const BtnExecute = styled.div`
@@ -331,7 +337,8 @@ export const BtnExecute = styled.div`
   clip-path: polygon(100% 0, 100% 75%, 92% 100%, 0 100%, 0 0);
   height: 2.5rem;
   width: 15rem;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
   color: white;
   cursor: pointer;
 `

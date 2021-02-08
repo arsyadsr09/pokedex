@@ -15,7 +15,8 @@ export const StatsTitle = styled.div`
   margin-top: 0.5rem;
   font-size: 16px;
   color: #2f3542;
-  font-family: "FlexoBold", sans-serif;
+  font-family: "Exo", sans-serif;
+  font-weight: 600;
 `
 
 export const ProgressBar = styled.div`
